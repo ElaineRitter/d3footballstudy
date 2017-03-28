@@ -44,7 +44,7 @@ end
 #
 def crawlTeam(teamname, url, rooturl, years)
   years.each do |year|
-    puts 'year is'+year
+    puts 'year is '+year
     # if play-by-play/year/teamname already exists then skip it
     if File.directory?("play-by-play/%s/%s" % [year, teamname.gsub(' ', '_')])
       printf("skipping %s because play-by-play/%s/%s exists\n" % [teamname.gsub(' ', '_'), year, teamname])
@@ -96,7 +96,7 @@ def test1
   # function for testing the crawlTeam() function on only one sample team.
   # if you don't start by testing this function in isolation, there's basically
   # no chance that the whole program will work.
-  crawlTeam('Knox', 'http://d3football.com/teams/Knox/2016/index', 'http://d3football.com')
+  crawlTeam('Knox', 'http://d3football.com/teams/Knox/2016/index', 'http://d3football.com', ['2015', '2016'])
 end
 
 # __FILE__ == $0 is a Ruby construct that asks us if this is the main Ruby file
@@ -107,8 +107,7 @@ end
 if __FILE__ == $0
   rooturl = 'http://d3football.com'
   path = '/teams/index';
-  #  years=['2016', '2015', '2014', '2013', '2012', '2011']
-  years=['2015']
+  years=['2016', '2015', '2014', '2013', '2012', '2011']
   # get the links to the pages containing the play by plays for each team
   teamlinks = crawlTeamLinks(rooturl, path)
   teamlinks.each do |team, link|
